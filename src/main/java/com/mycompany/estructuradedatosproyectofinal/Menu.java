@@ -73,15 +73,18 @@ public class Menu {
 
                         if (edad >= 65) {
                             colaPrioridad.encola( new NodoC (votante));
+                            JOptionPane.showMessageDialog(null, "Votante añadido a la cola de prioridad.");
                         } else {
                             do {
                                 tipoUsuario = Integer.parseInt(JOptionPane.showInputDialog("¿La persona padece de alguna discapacidad?.\n1. Sí\n2. No"));
                                 switch (tipoUsuario) {
                                     case 1:
                                         colaPrioridad.encola(new NodoC(votante));
+                                        JOptionPane.showMessageDialog(null, "Votante añadido a la cola de prioridad.");
                                         break;
                                     case 2:
                                         colaRegular.encola(new NodoC(votante));
+                                        JOptionPane.showMessageDialog(null, "Votante añadido a la cola regular.");
                                         break;
                                     default:
                                         break;
