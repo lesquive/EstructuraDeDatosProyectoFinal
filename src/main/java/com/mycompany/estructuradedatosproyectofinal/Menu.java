@@ -86,7 +86,7 @@ public class Menu {
                                     default:
                                         break;
                                 }
-                            } while (tipoUsuario != 1 || tipoUsuario != 2);
+                            } while (tipoUsuario != 1 && tipoUsuario != 2);
                         }
 
                         break;
