@@ -11,4 +11,11 @@ package com.mycompany.estructuradedatosproyectofinal;
  */
 public class Persona {
     
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private int edad;
+    private boolean colaPrioridad;
+    private String codigo;
+    
 }
