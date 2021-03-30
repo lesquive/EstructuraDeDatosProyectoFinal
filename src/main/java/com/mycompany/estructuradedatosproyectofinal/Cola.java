@@ -9,7 +9,7 @@ package com.mycompany.estructuradedatosproyectofinal;
  *
  * @author lesquive
  */
-public class ColaPrioridad {
+public class Cola {
     private NodoC frente;
     private NodoC ultimo;
 

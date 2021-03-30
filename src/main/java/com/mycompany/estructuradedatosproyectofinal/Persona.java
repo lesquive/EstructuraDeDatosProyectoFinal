@@ -17,12 +17,12 @@ public class Persona {
         private int edad;
         private String codigo;
 
-     public Persona(String cedula, String nombre, String apellido, int edad, String codigo) {
+     public Persona(String cedula, String nombre, String apellido, int edad) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        this.codigo = codigo;
+        this.codigo = null;
     }
 
      public String getCedula() {
