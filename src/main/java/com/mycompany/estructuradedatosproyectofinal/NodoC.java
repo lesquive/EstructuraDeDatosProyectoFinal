@@ -18,11 +18,11 @@ public class NodoC {
         this.atras = null;
     }
 
-    public Persona getvotante() {
+    public Persona getVotante() {
         return votante;
     }
 
-    public void setvotante(Persona votante) {
+    public void setVotante(Persona votante) {
         this.votante = votante;
     }
 

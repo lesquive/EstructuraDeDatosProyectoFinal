@@ -9,60 +9,61 @@ package com.mycompany.estructuradedatosproyectofinal;
  *
  * @author Alegu
  */
-
 public class Persona {
-        private String cedula;
-        private String nombre;
-        private String apellido;
-        private int edad;
-        private String codigo;
 
-     public Persona(String cedula, String nombre, String apellido, int edad) {
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private int edad;
+    private int codigo;
+
+    public Persona(String cedula, String nombre, String apellido, int edad) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        this.codigo = null;
+        this.codigo = 0;
     }
 
-     public String getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-     public void setCedula(String cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
-     public String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-     public void setNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-     public String getApellido() {
+    public String getApellido() {
         return apellido;
     }
 
-     public void setApellido(String apellido) {
+    public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
-     public int getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-     public void setEdad(int edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
-     public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-     public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigo() {
+        int codigoNuevo = NumeroAleatorio.NumeroAleatorio();
+        this.codigo = codigoNuevo;
     }
 
 }

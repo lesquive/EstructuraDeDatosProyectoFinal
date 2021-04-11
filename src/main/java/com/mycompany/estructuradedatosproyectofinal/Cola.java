@@ -39,10 +39,18 @@ public class Cola {
     
     public void imprimeCola(NodoC persona){
         if(persona.getAtras()==null){
-            System.out.println("El nombre del votante es: " + persona.getvotante());
+            System.out.println("El nombre del votante es: " + persona.getVotante());
         }else{
-            System.out.println("El nombre del votante es: " + persona.getvotante());
+            System.out.println("El nombre del votante es: " + persona.getVotante());
             imprimeCola(persona.getAtras());
+        }
+    }
+    
+    public boolean colaVacia(){
+        if (frente == null){
+            return true;
+        }else{
+            return false;
         }
     }
 }
