@@ -1,6 +1,8 @@
 
 package com.mycompany.estructuradedatosproyectofinal;
 
+import javax.swing.JOptionPane;
+
 public class Pila {
     private Dato top;
 
@@ -34,27 +36,24 @@ public class Pila {
         }
     }
     
-    public String buscaVotante(Dato nodo, int codigo){
+    public void buscaVotante(Dato nodo, int codigo){
         
-        String mensaje = "";
         
         if(nodo != null){
             if (nodo.getCodigo() == codigo){
-                mensaje = "Hola " + nodo.getNombre() + " " 
+                JOptionPane.showMessageDialog(null, "Hola " + nodo.getNombre() + " " 
                         + nodo.getApellido() + "\nCédula: " + nodo.getCedula() 
                         + "\n\nSu voto ha sido emitido correctamente. Usted votó por: " 
-                        + nodo.getVoto();
+                        + nodo.getVoto()); 
                 
-                return mensaje;
                 
             } else{
                 buscaVotante(nodo.getAbajo(), codigo);
             }
         }else {
-            mensaje = "No se encontró su voto.";           
+            JOptionPane.showMessageDialog(null, "No se encontró su voto.");           
         }
         
-        return mensaje;
     }
     
     @Override

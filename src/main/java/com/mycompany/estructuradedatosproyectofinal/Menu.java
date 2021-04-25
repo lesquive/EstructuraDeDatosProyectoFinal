@@ -32,7 +32,7 @@ public class Menu {
             String menu
                     = "MENU\n"
                     + "1) Ingresar Opciones para Votación           \n"
-                    + "2) Registrar Usuario                         \n"
+                    + "2) Registrar Votante                         \n"
                     + "3) Iniciar Votación                          \n"
                     + "4) Generar Resultados                        \n"
                     + "5) Confirmar Voto                            \n"
@@ -130,7 +130,7 @@ public class Menu {
                                     while (codigoAsertado == false) {
 
                                         if (codigoIngresado == atendido.getVotante().getCodigo()) {
-                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar: " + opcionesVotacion));
+                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar: \n" + opcionesVotacion));
                                             atendidoPila = new Dato(
                                                     atendido.getVotante().getCedula(),
                                                     atendido.getVotante().getNombre(),
@@ -141,6 +141,7 @@ public class Menu {
                                             contadorOpcionVotacion[opcionIngresada - 1] = contadorOpcionVotacion[opcionIngresada - 1] + 1;
                                             codigoAsertado = true;
                                             pilaAtentidos.push(atendidoPila);
+                                            JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
@@ -156,7 +157,7 @@ public class Menu {
                                     while (codigoAsertado == false) {
 
                                         if (codigoIngresado == atendido.getVotante().getCodigo()) {
-                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar" + opcionesVotacion));
+                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar: \n" + opcionesVotacion));
                                             atendidoPila = new Dato(
                                                     atendido.getVotante().getCedula(),
                                                     atendido.getVotante().getNombre(),
@@ -167,6 +168,7 @@ public class Menu {
                                             contadorOpcionVotacion[opcionIngresada - 1] = contadorOpcionVotacion[opcionIngresada - 1] + 1;
                                             codigoAsertado = true;
                                             pilaAtentidos.push(atendidoPila);
+                                            JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
@@ -182,7 +184,7 @@ public class Menu {
                                     while (codigoAsertado == false) {
 
                                         if (codigoIngresado == atendido.getVotante().getCodigo()) {
-                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar" + opcionesVotacion));
+                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar: \n" + opcionesVotacion));
                                             atendidoPila = new Dato(
                                                     atendido.getVotante().getCedula(),
                                                     atendido.getVotante().getNombre(),
@@ -193,6 +195,7 @@ public class Menu {
                                             contadorOpcionVotacion[opcionIngresada - 1] = contadorOpcionVotacion[opcionIngresada - 1] + 1;
                                             codigoAsertado = true;
                                             pilaAtentidos.push(atendidoPila);
+                                            JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
@@ -221,13 +224,10 @@ public class Menu {
 
                         case 5:
                             int codigoBuscar = Integer.parseInt(JOptionPane.showInputDialog("Digite el código que utilizó al votar."));
-                            String mensaje = pilaAtentidos.buscaVotante(pilaAtentidos.getTop(), codigoBuscar);
-                            JOptionPane.showMessageDialog(null, mensaje);
+                            pilaAtentidos.buscaVotante(pilaAtentidos.getTop(), codigoBuscar);
                             break;
                         case 6:
-                            //Se Utiliza el case 11 cuando se finaliza el programa.  
-                            //La variable global salir cambia a true, y termina el while loop.  
-                            System.out.println("El Programa ha terminado.");
+                            JOptionPane.showMessageDialog(null, "Gracias por utilizar el sistema.");
                             salir = true;
                             break;
 
