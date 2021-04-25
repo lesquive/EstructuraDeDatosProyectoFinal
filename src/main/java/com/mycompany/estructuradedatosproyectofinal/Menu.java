@@ -1,6 +1,7 @@
 package com.mycompany.estructuradedatosproyectofinal;
 
 import javax.swing.JOptionPane;
+import java.util.Arrays;
 
 /**
  * ESTUDIANTES:
@@ -19,7 +20,9 @@ public class Menu {
         Cola colaPrioridad = new Cola();
         Pila pilaAtentidos = new Pila();
         Elementos opcionVotacion[] = null;
+        int contadorOpcionVotacion[] = null;
         String opcionesVotacion = "";
+        boolean codigoAsertado = false;
 
         boolean salir = false; //Condicional que permite al programa continuar su ejecucion. 
 
@@ -52,8 +55,10 @@ public class Menu {
                                 int elementosVotacion = Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de elementos de votación que desea: "));
 
                                 opcionVotacion = new Elementos[elementosVotacion];
+                                contadorOpcionVotacion = new int [elementosVotacion];
 
                                 for (int i = 0; i < opcionVotacion.length; i++) {
+                                    contadorOpcionVotacion[i] = 0;
                                     elemento = JOptionPane.showInputDialog("Digite su opción número " + (i + 1) + " : ");
                                     opcionesVotacion += (i + 1) + "." + elemento + "\n";
                                     opcionVotacion[i] = new Elementos(elemento);
@@ -114,24 +119,33 @@ public class Menu {
                             Dato atendidoPila = null;
                             while (colaPrioridad.colaVacia() == false || colaRegular.colaVacia() == false) {
 
+                                codigoAsertado = false;
+
                                 if (colaPrioridad.colaVacia()) {
                                     atendido = colaRegular.atiende();
 
                                     JOptionPane.showMessageDialog(null, "Atendiendo a " + atendido.getVotante().getNombre() + " " + atendido.getVotante().getApellido());
                                     int codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
 
-                                    if (codigoIngresado == atendido.getVotante().getCodigo()) {
-                                        int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar" + opcionesVotacion));
-                                        atendidoPila = new Dato(
-                                                atendido.getVotante().getCedula(),
-                                                atendido.getVotante().getNombre(),
-                                                atendido.getVotante().getApellido(),
-                                                atendido.getVotante().getEdad(),
-                                                atendido.getVotante().getCodigo(),
-                                                opcionVotacion[opcionIngresada - 1].getElemento());
-                                        pilaAtentidos.push(atendidoPila);
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
+                                    while (codigoAsertado == false) {
+
+                                        if (codigoIngresado == atendido.getVotante().getCodigo()) {
+                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar: " + opcionesVotacion));
+                                            atendidoPila = new Dato(
+                                                    atendido.getVotante().getCedula(),
+                                                    atendido.getVotante().getNombre(),
+                                                    atendido.getVotante().getApellido(),
+                                                    atendido.getVotante().getEdad(),
+                                                    atendido.getVotante().getCodigo(),
+                                                    opcionVotacion[opcionIngresada - 1].getElemento());
+                                            contadorOpcionVotacion[opcionIngresada - 1] = contadorOpcionVotacion[opcionIngresada - 1] + 1;
+                                            codigoAsertado = true;
+                                            pilaAtentidos.push(atendidoPila);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
+                                            codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
+                                        }
+
                                     }
 
                                 } else if (cuentaColaPrioridad < 2) {
@@ -139,39 +153,51 @@ public class Menu {
                                     JOptionPane.showMessageDialog(null, "Atendiendo a " + atendido.getVotante().getNombre() + " " + atendido.getVotante().getApellido());
                                     int codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
 
-                                    if (codigoIngresado == atendido.getVotante().getCodigo()) {
-                                        int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar" + opcionesVotacion));
-                                        atendidoPila = new Dato(
-                                                atendido.getVotante().getCedula(),
-                                                atendido.getVotante().getNombre(),
-                                                atendido.getVotante().getApellido(),
-                                                atendido.getVotante().getEdad(),
-                                                atendido.getVotante().getCodigo(),
-                                                opcionVotacion[opcionIngresada - 1].getElemento());
-                                        pilaAtentidos.push(atendidoPila);
-                                        cuentaColaPrioridad++;
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
+                                    while (codigoAsertado == false) {
+
+                                        if (codigoIngresado == atendido.getVotante().getCodigo()) {
+                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar" + opcionesVotacion));
+                                            atendidoPila = new Dato(
+                                                    atendido.getVotante().getCedula(),
+                                                    atendido.getVotante().getNombre(),
+                                                    atendido.getVotante().getApellido(),
+                                                    atendido.getVotante().getEdad(),
+                                                    atendido.getVotante().getCodigo(),
+                                                    opcionVotacion[opcionIngresada - 1].getElemento());
+                                            contadorOpcionVotacion[opcionIngresada - 1] = contadorOpcionVotacion[opcionIngresada - 1] + 1;
+                                            codigoAsertado = true;
+                                            pilaAtentidos.push(atendidoPila);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
+                                            codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
+                                        }
+
                                     }
+
                                 } else {
                                     atendido = colaRegular.atiende();
                                     JOptionPane.showMessageDialog(null, "Atendiendo a " + atendido.getVotante().getNombre() + " " + atendido.getVotante().getApellido());
                                     int codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
 
-                                    if (codigoIngresado == atendido.getVotante().getCodigo()) {
-                                        int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar" + opcionesVotacion));
+                                    while (codigoAsertado == false) {
 
-                                        atendidoPila = new Dato(
-                                                atendido.getVotante().getCedula(),
-                                                atendido.getVotante().getNombre(),
-                                                atendido.getVotante().getApellido(),
-                                                atendido.getVotante().getEdad(),
-                                                atendido.getVotante().getCodigo(),
-                                                opcionVotacion[opcionIngresada - 1].getElemento());
-                                        pilaAtentidos.push(atendidoPila);
-                                        cuentaColaPrioridad = 0;
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
+                                        if (codigoIngresado == atendido.getVotante().getCodigo()) {
+                                            int opcionIngresada = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el número de la opción por la que desea votar" + opcionesVotacion));
+                                            atendidoPila = new Dato(
+                                                    atendido.getVotante().getCedula(),
+                                                    atendido.getVotante().getNombre(),
+                                                    atendido.getVotante().getApellido(),
+                                                    atendido.getVotante().getEdad(),
+                                                    atendido.getVotante().getCodigo(),
+                                                    opcionVotacion[opcionIngresada - 1].getElemento());
+                                            contadorOpcionVotacion[opcionIngresada - 1] = contadorOpcionVotacion[opcionIngresada - 1] + 1;
+                                            codigoAsertado = true;
+                                            pilaAtentidos.push(atendidoPila);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
+                                            codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
+                                        }
+
                                     }
                                 }
                             }
@@ -179,11 +205,24 @@ public class Menu {
 
                         case 4:
 
+                            int max = 0;
+                            String ganador = null;
+                            
+                            for (int i = 0; i < contadorOpcionVotacion.length; i++) {
+                                if (contadorOpcionVotacion[i] > max) {
+                                    max = contadorOpcionVotacion[i];
+                                    ganador = opcionVotacion[i].getElemento();
+                                }
+                            }
+                            
+                            JOptionPane.showMessageDialog(null, "El Ganador es: " + ganador + " con un total de " + max + " votos.");
+
                             break;
 
                         case 5:
                             int codigoBuscar = Integer.parseInt(JOptionPane.showInputDialog("Digite el código que utilizó al votar."));
-                            pilaAtentidos.buscaVotante(pilaAtentidos.getTop(), codigoBuscar);
+                            String mensaje = pilaAtentidos.buscaVotante(pilaAtentidos.getTop(), codigoBuscar);
+                            JOptionPane.showMessageDialog(null, mensaje);
                             break;
                         case 6:
                             //Se Utiliza el case 11 cuando se finaliza el programa.  

@@ -34,19 +34,27 @@ public class Pila {
         }
     }
     
-    public void buscaVotante(Dato nodo, int codigo){
+    public String buscaVotante(Dato nodo, int codigo){
+        
+        String mensaje = "";
+        
         if(nodo != null){
-            if (nodo.getCedula().equals(codigo)){
-                System.out.println("Hola " + nodo.getNombre() + " " 
+            if (nodo.getCodigo() == codigo){
+                mensaje = "Hola " + nodo.getNombre() + " " 
                         + nodo.getApellido() + "\nCédula: " + nodo.getCedula() 
                         + "\n\nSu voto ha sido emitido correctamente. Usted votó por: " 
-                        + nodo.getVoto());
+                        + nodo.getVoto();
+                
+                return mensaje;
+                
             } else{
                 buscaVotante(nodo.getAbajo(), codigo);
             }
         }else {
-            System.out.println("No se encontró su voto.");           
+            mensaje = "No se encontró su voto.";           
         }
+        
+        return mensaje;
     }
     
     @Override
