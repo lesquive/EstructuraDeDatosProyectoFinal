@@ -168,6 +168,7 @@ public class Menu {
                                             codigoAsertado = true;
                                             pilaAtentidos.push(atendidoPila);
                                             JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
+                                            cuentaColaPrioridad ++;
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
@@ -195,6 +196,7 @@ public class Menu {
                                             codigoAsertado = true;
                                             pilaAtentidos.push(atendidoPila);
                                             JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
+                                            cuentaColaPrioridad = 0;
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
