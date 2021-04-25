@@ -22,7 +22,7 @@ public class Persona {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        this.codigo = 0;
+        setCodigo();
     }
 
     public String getCedula() {

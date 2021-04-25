@@ -16,7 +16,7 @@ public class Menu {
 
     public static void ejecutar() {
 
-        Cola colaRegular = new Cola();
+        Cola colaRegular = new Cola(); 
         Cola colaPrioridad = new Cola();
         Pila pilaAtentidos = new Pila();
         Elementos opcionVotacion[] = null;
@@ -84,8 +84,7 @@ public class Menu {
                                 }
                             } while (edad < 18);
 
-                            Persona votante = new Persona(cedula, nombre, apellido, opcion);
-                            votante.setCodigo();
+                            Persona votante = new Persona(cedula, nombre, apellido, edad);                           
                             int codigo = votante.getCodigo();
 
                             int tipoUsuario;

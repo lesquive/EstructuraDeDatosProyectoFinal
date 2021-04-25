@@ -43,9 +43,9 @@ public class Pila {
             if (nodo.getCodigo() == codigo){
                 JOptionPane.showMessageDialog(null, "Hola " + nodo.getNombre() + " " 
                         + nodo.getApellido() + "\nCédula: " + nodo.getCedula() 
+                        + "\nEdad: " + nodo.getEdad() 
                         + "\n\nSu voto ha sido emitido correctamente. Usted votó por: " 
-                        + nodo.getVoto()); 
-                
+                        + nodo.getVoto());              
                 
             } else{
                 buscaVotante(nodo.getAbajo(), codigo);
