@@ -9,6 +9,9 @@ package com.mycompany.estructuradedatosproyectofinal;
  *
  * @author Alejandro
  */
+
+//Clase donde generamos el numero aleatorio para el codigo de cada persona votante
+
 public class NumeroAleatorio {
     public static int NumeroAleatorio(){
         

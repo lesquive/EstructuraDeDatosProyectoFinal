@@ -3,6 +3,8 @@ package com.mycompany.estructuradedatosproyectofinal;
 
 import javax.swing.JOptionPane;
 
+//Pila donde se iran resgistrando los votantes que se atendieron de la cola
+
 public class Pila {
     private Dato top;
 

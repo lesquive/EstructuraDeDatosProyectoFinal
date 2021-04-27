@@ -9,6 +9,10 @@ package com.mycompany.estructuradedatosproyectofinal;
  *
  * @author lesquive
  */
+
+//Clase cola en la cual definimos el imprime cola y cola vacia
+//esta misma clase cola se utiliza para la cola prioridad y la cola regular 
+
 public class Cola {
     private NodoC frente;
     private NodoC ultimo;

@@ -9,6 +9,9 @@ package com.mycompany.estructuradedatosproyectofinal;
  *
  * @author lesquive
  */
+
+//Clase elementos donde se define la variable string por la cual van a votar
+
 public class Elementos {
 
     private String Elemento;

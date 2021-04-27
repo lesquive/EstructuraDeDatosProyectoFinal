@@ -9,6 +9,9 @@ package com.mycompany.estructuradedatosproyectofinal;
  *
  * @author lesquive
  */
+
+//Clase NodoC define el objeto que se utilizara en la cola
+
 public class NodoC {
     private Persona votante;
     private NodoC atras;

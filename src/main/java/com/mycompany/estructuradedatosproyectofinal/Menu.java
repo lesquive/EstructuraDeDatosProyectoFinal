@@ -28,7 +28,8 @@ public class Menu {
 
         while (salir == false) {
 
-            //Menú principal con 6 opciones que permite al administrador del programa ejecutar todas las tareas disponibles. 
+//Menú principal con 6 opciones que permite al administrador del programa 
+//ejecutar todas las tareas disponibles. 
             String menu
                     = "MENU\n"
                     + "1) Ingresar Opciones para Votación           \n"
@@ -40,7 +41,7 @@ public class Menu {
 
             try {
                 int opcion = Integer.parseInt(JOptionPane.showInputDialog(menu + "\nEscoja una opcion del 1 al 6: "));
-
+//El menu de 6 opciones dentro del While 
                 if (opcion > 0 && opcion <= 6) {
 
                     switch (opcion) {
@@ -53,22 +54,26 @@ public class Menu {
                             try {
 
                                 int elementosVotacion = Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de elementos de votación que desea: "));
-
+//Definimos las opciones por las cuales el usuario desea votar
                                 opcionVotacion = new Elementos[elementosVotacion];
                                 contadorOpcionVotacion = new int [elementosVotacion];
-
+//Le enviamos al arreglo la cantidad de opciones de votacion que tendra este arreglo
+//y agregamos un arreglo donde podamos almacenar la cantidad de votos de cada elemento
                                 for (int i = 0; i < opcionVotacion.length; i++) {
                                     contadorOpcionVotacion[i] = 0;
                                     elemento = JOptionPane.showInputDialog("Digite su opción número " + (i + 1) + " : ");
                                     opcionesVotacion += (i + 1) + "." + elemento + "\n";
                                     opcionVotacion[i] = new Elementos(elemento);
+//Le damos Nombre a cada elemento de votacion con un ciclo 
+//Dependiendo de la cantidad que se haya digitado antes 
                                 }
 
                             } catch (Exception e) {
 
                                 JOptionPane.showMessageDialog(null, "Las opciones digitadas no son válidas intentelo de nuevo.");
                                 Menu.ejecutar();
-
+//con una validacion de try and catch verificamos que no haya errores en 
+//el codigo ingresando los datos de votacion
                             }
                             break;
 
@@ -77,6 +82,7 @@ public class Menu {
                             String nombre = JOptionPane.showInputDialog("Digite el nombre de la persona.");
                             String apellido = JOptionPane.showInputDialog("Digite el apellido de la persona.");
                             int edad;
+//Se le pide al usuario digite sus datos personales para brindarle su codigo de votacion  
                             do {
                                 edad = Integer.parseInt(JOptionPane.showInputDialog("Digite la edad de la persona."));
                                 if (edad < 18) {
@@ -86,13 +92,16 @@ public class Menu {
 
                             Persona votante = new Persona(cedula, nombre, apellido, edad);                           
                             int codigo = votante.getCodigo();
-
+                            
                             int tipoUsuario;
-
+//Verificamos si el usuario es mayor de 65 años esto para 
+//agregarlo a la cola prioridad en caso de ser necesario
                             if (edad >= 65) {
                                 colaPrioridad.encola(new NodoC(votante));
                                 JOptionPane.showMessageDialog(null, "Votante añadido a la cola de prioridad. Su codigo para votar es: " + codigo);
                             } else {
+//Le preguntamos al usuario si la persona si posee alguna discapacidad para 
+//agregarlo a la cola prioridad o a la cola regular                                
                                 do {
                                     tipoUsuario = Integer.parseInt(JOptionPane.showInputDialog("¿La persona padece de alguna discapacidad?.\n1. Sí\n2. No"));
                                     switch (tipoUsuario) {
@@ -106,6 +115,7 @@ public class Menu {
                                             break;
                                         default:
                                             break;
+//Con un while verificamos que los datos ingresados sean correctos                                              
                                     }
                                 } while (tipoUsuario != 1 && tipoUsuario != 2);
                             }
@@ -117,15 +127,15 @@ public class Menu {
                             NodoC atendido = null;
                             Dato atendidoPila = null;
                             while (colaPrioridad.colaVacia() == false || colaRegular.colaVacia() == false) {
-
+//Se inicia la votacion en la cual se iran contando los votos de las cola
                                 codigoAsertado = false;
 
                                 if (colaPrioridad.colaVacia()) {
                                     atendido = colaRegular.atiende();
-
+//verificamos con el metodo cola regular que la cola no este vacia
                                     JOptionPane.showMessageDialog(null, "Atendiendo a " + atendido.getVotante().getNombre() + " " + atendido.getVotante().getApellido());
                                     int codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
-
+//Atendemos al primer usuario de la cola
                                     while (codigoAsertado == false) {
 
                                         if (codigoIngresado == atendido.getVotante().getCodigo()) {
@@ -141,6 +151,8 @@ public class Menu {
                                             codigoAsertado = true;
                                             pilaAtentidos.push(atendidoPila);
                                             JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
+//Verificamos el codigo de usuario que esta en la cola con el que
+//se le brindo a usuario en caso de ser igual se procede a tomar el voto                                             
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
@@ -152,7 +164,7 @@ public class Menu {
                                     atendido = colaPrioridad.atiende();
                                     JOptionPane.showMessageDialog(null, "Atendiendo a " + atendido.getVotante().getNombre() + " " + atendido.getVotante().getApellido());
                                     int codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
-
+//En caso de que la cola prioridad tenga menos de dos personas a atender se les tomara el voto  
                                     while (codigoAsertado == false) {
 
                                         if (codigoIngresado == atendido.getVotante().getCodigo()) {
@@ -169,6 +181,8 @@ public class Menu {
                                             pilaAtentidos.push(atendidoPila);
                                             JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
                                             cuentaColaPrioridad ++;
+//Cada vez que atiende uno suma 1 a cuenta cola prioridad para atender 2 de la cola prioridad y 
+//luego atender a uno de la cola regular                                              
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
@@ -197,6 +211,8 @@ public class Menu {
                                             pilaAtentidos.push(atendidoPila);
                                             JOptionPane.showMessageDialog(null, "El voto ha sido emitido correctamente.");
                                             cuentaColaPrioridad = 0;
+//Una vez atentido el usuario de la cola regular el contador de cuenta cola prioridad llega a 
+//0 para que atiende a las personas en la cola prioridad 
                                         } else {
                                             JOptionPane.showMessageDialog(null, "El código ingresado no es correcto");
                                             codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
@@ -208,7 +224,7 @@ public class Menu {
                             break;
 
                         case 4:
-
+                                                    
                             int max = 0;
                             String ganador = null;
                             
@@ -219,6 +235,8 @@ public class Menu {
                                 }
                             }
                             
+//Ciclo for donde asignamos a la variable ganador el elemento con mayot votos                              
+                            
                             JOptionPane.showMessageDialog(null, "El Ganador es: " + ganador + " con un total de " + max + " votos.");
 
                             break;
@@ -227,7 +245,11 @@ public class Menu {
                             int codigoBuscar = Integer.parseInt(JOptionPane.showInputDialog("Digite el código que utilizó al votar."));
                             pilaAtentidos.buscaVotante(pilaAtentidos.getTop(), codigoBuscar);
                             break;
+//Se le pide el codigo a usuario y luego se recorre la pila hasta encontrar y                           
+//avisar al usuario que su voto esta resgitrado                             
                         case 6:
+//Se Utiliza el case 6 cuando se finaliza el programa.  
+//La variable global salir cambia a true, y termina el while loop.
                             JOptionPane.showMessageDialog(null, "Gracias por utilizar el sistema.");
                             salir = true;
                             break;
@@ -235,7 +257,8 @@ public class Menu {
                     }
 
                 } else {
-                    System.out.println("Por favor ingrese un numero del 1 al 6"); //Si el Administrador del programa no escoge una opción del 1 al 6, el menu se repite.  
+                    System.out.println("Por favor ingrese un numero del 1 al 6"); 
+//Si el Administrador del programa no escoge una opción del 1 al 6, el menu se repite.  
                 }
             } catch (Exception e) {
             }

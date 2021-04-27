@@ -9,6 +9,10 @@ package com.mycompany.estructuradedatosproyectofinal;
  *
  * @author Alegu
  */
+
+//Clase persona definimos las propiedades de la clase persona y en la muy importante 
+//en la parte de set codigo se llama a metodo numero aleatorio para asignarle su codigo
+
 public class Persona {
 
     private String cedula;
