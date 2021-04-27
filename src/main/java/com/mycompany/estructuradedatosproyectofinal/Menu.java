@@ -132,7 +132,8 @@ public class Menu {
 
                                 if (colaPrioridad.colaVacia()) {
                                     atendido = colaRegular.atiende();
-//verificamos con el metodo cola regular que la cola no este vacia
+//verificamos con el metodo cola vacia que la cola prioridad este 
+//vacia de ser asi atendemos a alguien de la cola regular
                                     JOptionPane.showMessageDialog(null, "Atendiendo a " + atendido.getVotante().getNombre() + " " + atendido.getVotante().getApellido());
                                     int codigoIngresado = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite su código asignado para la votación"));
 //Atendemos al primer usuario de la cola
@@ -258,7 +259,7 @@ public class Menu {
 
                 } else {
                     System.out.println("Por favor ingrese un numero del 1 al 6"); 
-//Si el Administrador del programa no escoge una opción del 1 al 6, el menu se repite.  
+//Si el Administrador del programa no escoge una opción del 1 al 6, el menu se repite.      
                 }
             } catch (Exception e) {
             }
